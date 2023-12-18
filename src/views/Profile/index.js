@@ -4,6 +4,7 @@ import { styles } from "./style";
 
 export function Profile({ navigation }) {
     const openOptions = () => {
+        navigation.navigate('Settings');
     };
 
 
