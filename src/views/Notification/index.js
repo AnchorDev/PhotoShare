@@ -8,8 +8,11 @@ export function Notification({ navigation }) {
 
     const [items, setItems] = useState([
         { id: 1, username: "TylerDurden", action: "zaczął/zaczęła", timeAgo: "5 godz.", isFollowing: true, image: require("../../img/prof1.jpg") },
-        { id: 2, username: "JacekWrobel", action: "zaczął/zaczęła", timeAgo: "13 godz.", isFollowing: false, image: require("../../img/prof2.jpg") },
-        { id: 3, username: "JaJezdze", action: "zaczął/zaczęła", timeAgo: "15 godz.", isFollowing: true, image: require("../../img/prof3.jpg") },
+        { id: 2, username: "JacekWrobel", action: "zaczął/zaczęła", timeAgo: "8 godz.", isFollowing: false, image: require("../../img/prof2.jpg") },
+        { id: 3, username: "JaJezdze", action: "zaczął/zaczęła", timeAgo: "11 godz.", isFollowing: false, image: require("../../img/prof3.jpg") },
+        { id: 4, username: "Marek", action: "zaczął/zaczęła", timeAgo: "15 godz.", isFollowing: false, image: require("../../img/prof1.jpg") },
+        { id: 5, username: "Darek", action: "zaczął/zaczęła", timeAgo: "17 godz.", isFollowing: true, image: require("../../img/prof2.jpg") },
+        { id: 6, username: "Karek", action: "zaczął/zaczęła", timeAgo: "23 godz.", isFollowing: true, image: require("../../img/prof3.jpg") },
     ]);
 
     const handleButton1Press = () => {

@@ -122,18 +122,18 @@ const App = () => {
       <View style={styles.header}>
         <TouchableOpacity onPress={() => console.log('Button pressed')}>
           <Image
-            source={require('./assets/left-arrow.png')}
+            source={require('../../../assets/left-arrow.png')}
             style={styles.imageButton}
           />
         </TouchableOpacity>
         <Text style={styles.headerText}>Ustawienia</Text>
       </View>
       <View style={styles.settingsPanel}>
-        {renderSettingItem('Język', require('./assets/language-icon.png'), handleLanguageClick)}
-        {renderSettingItem('Powiadomienia', require('./assets/notification-icon.png'), handleNotificationsClick)}
-        {renderSettingItem('Prywatność', require('./assets/privacy-icon.png'), handlePrivacyClick)}
-        {renderSettingItem('Użycie danych', require('./assets/data-usage-icon.png'), handleDataUsageClick)}
-        {renderSettingItem('Informacje', require('./assets/info-icon.png'), handleInfoClick)}
+              {renderSettingItem('Język', require('../../../assets/language-icon.png'), handleLanguageClick)}
+              {renderSettingItem('Powiadomienia', require('../../../assets/notification-icon.png'), handleNotificationsClick)}
+              {renderSettingItem('Prywatność', require('../../../assets/privacy-icon.png'), handlePrivacyClick)}
+              {renderSettingItem('Użycie danych', require('../../../assets/data-usage-icon.png'), handleDataUsageClick)}
+              {renderSettingItem('Informacje', require('../../../assets/info-icon.png'), handleInfoClick)}
         <TouchableOpacity style={styles.settingItem} onPress={handleLogoutClick}>
           <Text style={styles.settingsTextRed}>Wyloguj</Text>
         </TouchableOpacity>
