@@ -27,7 +27,9 @@ export function History({ navigation }) {
                 <Text style={styles.textStyles}>Powiadomienia</Text>
             </View>
 
+
             <View style={styles.todaySection}>
+
                 <Text style={styles.todayHeaderText}>Dzisiaj</Text>
                 <View style={styles.todayItemContainer}>
                     <View style={styles.todayProfileBackground}>
@@ -37,8 +39,74 @@ export function History({ navigation }) {
                         />
                     </View>
                     <View style={styles.todayInfoContainer}>
-                        <Text style={styles.todayUsername}>Nazwa Użytkownika</Text>
-                        <Text style={styles.todayAction}>zaczął/zaczęła Cię obserwować.</Text>
+                        <Text style={styles.todayUsername}>marynarzhehe <Text style={styles.todayAction}>zaczął/zaczęła</Text></Text>
+                        <Text style={styles.todayAction}>Cię obserwować.</Text>
+                        <Text style={styles.todayTimeAgo}>5 godz.</Text>
+                    </View>
+                    <TouchableOpacity
+                        style={[
+                            styles.todayActionButton,
+                            isFollowing
+                                ? styles.todayActionButtonFollowed
+                                : styles.todayActionButtonStart,
+                        ]}
+                        onPress={handleFollowButtonPress}
+                    >
+                        <Text
+                            style={[
+                                styles.todayActionButtonText,
+                                isFollowing
+                                    ? styles.todayActionButtonTextFollowed
+                                    : styles.todayActionButtonTextStart,
+                            ]}
+                        >
+                            {isFollowing ? "Obserwujesz" : "Zacznij obserwować"}
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.todayItemContainer}>
+                    <View style={styles.todayProfileBackground}>
+                        <Image
+                            source={require("../../img/profilowe.jpg")}
+                            style={styles.profileImage}
+                        />
+                    </View>
+                    <View style={styles.todayInfoContainer}>
+                        <Text style={styles.todayUsername}>eliza.janus <Text style={styles.todayAction}>zaczął/zaczęła</Text></Text>
+                        <Text style={styles.todayAction}>Cię obserwować.</Text>
+                        <Text style={styles.todayTimeAgo}>13 godz.</Text>
+                    </View>
+                    <TouchableOpacity
+                        style={[
+                            styles.todayActionButton,
+                            isFollowing
+                                ? styles.todayActionButtonFollowed
+                                : styles.todayActionButtonStart,
+                        ]}
+                        onPress={handleFollowButtonPress}
+                    >
+                        <Text
+                            style={[
+                                styles.todayActionButtonText,
+                                isFollowing
+                                    ? styles.todayActionButtonTextFollowed
+                                    : styles.todayActionButtonTextStart,
+                            ]}
+                        >
+                            {isFollowing ? "Obserwujesz" : "Zacznij obserwować"}
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.todayItemContainer}>
+                    <View style={styles.todayProfileBackground}>
+                        <Image
+                            source={require("../../img/profilowe.jpg")}
+                            style={styles.profileImage}
+                        />
+                    </View>
+                    <View style={styles.todayInfoContainer}>
+                        <Text style={styles.todayUsername}>radek <Text style={styles.todayAction}>zaczął/zaczęła</Text></Text>
+                        <Text style={styles.todayAction}>Cię obserwować.</Text>
                         <Text style={styles.todayTimeAgo}>5 godz.</Text>
                     </View>
                     <TouchableOpacity
