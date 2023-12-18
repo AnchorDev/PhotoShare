@@ -1,16 +1,15 @@
-﻿// index.js
-import React, { useState } from "react";
+﻿import React, { useState } from "react";
 import { Text, View, TouchableOpacity, Image } from "react-native";
 import { styles } from "./style";
 
-export function History({ navigation }) {
+export function Notification({ navigation }) {
     const [button1Pressed, setButton1Pressed] = useState(true);
     const [button2Pressed, setButton2Pressed] = useState(false);
 
     const [items, setItems] = useState([
         { id: 1, username: "TylerDurden", action: "zaczął/zaczęła", timeAgo: "5 godz.", isFollowing: true, image: require("../../img/prof1.jpg") },
-        { id: 2, username: "JacekWrobel", action: "zaczął/zaczęła", timeAgo: "13 godz.", isFollowing: true, image: require("../../img/prof2.jpg") },
-        { id: 3, username: "JaJezdze", action: "zaczął/zaczęła", timeAgo: "5 godz.", isFollowing: true, image: require("../../img/prof3.jpg") },
+        { id: 2, username: "JacekWrobel", action: "zaczął/zaczęła", timeAgo: "13 godz.", isFollowing: false, image: require("../../img/prof2.jpg") },
+        { id: 3, username: "JaJezdze", action: "zaczął/zaczęła", timeAgo: "15 godz.", isFollowing: true, image: require("../../img/prof3.jpg") },
     ]);
 
     const handleButton1Press = () => {
