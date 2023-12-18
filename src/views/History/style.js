@@ -1,4 +1,5 @@
-﻿import { StyleSheet } from "react-native";
+﻿// style.js
+import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     container: {
@@ -11,12 +12,11 @@ export const styles = StyleSheet.create({
         position: 'absolute',
         top: 78,
         left: 20,
-        fontSize: 20,
         color: 'white',
         zIndex: 1,
     },
     textStyles: {
-        fontSize: 20,
+        fontSize: 25,
         color: 'white',
     },
     buttonsContainer: {
@@ -44,9 +44,10 @@ export const styles = StyleSheet.create({
         fontSize: 15,
     },
     todaySection: {
-        marginTop: 20,
-        paddingHorizontal: 20,
-        alignSelf: 'flex-start',
+        position: 'absolute',
+        top: 160,
+        left: 10, 
+        width: '100%',
     },
     todayHeaderText: {
         color: 'white',
@@ -59,6 +60,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         marginBottom: 10,
+        width: '100%',
     },
     todayProfileBackground: {
         width: 50,
@@ -81,8 +83,11 @@ export const styles = StyleSheet.create({
     todayUsername: {
         color: 'white',
         fontWeight: 'bold',
+        fontStyle: 'italic',
+        fontSize: 12,
     },
     todayAction: {
+        fontSize: 10,
         color: 'white',
     },
     todayTimeAgo: {
@@ -96,6 +101,7 @@ export const styles = StyleSheet.create({
         borderColor: 'white',
         alignItems: 'center',
         justifyContent: 'center',
+        right: 20,
     },
     todayActionButtonText: {
         color: 'white',
