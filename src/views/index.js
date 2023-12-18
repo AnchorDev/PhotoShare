@@ -1,8 +1,10 @@
 import {Login} from "./Login";
 import {Register} from "./Register";
 import {Home} from "./Home";
-import {History} from "./History";
-import {Profile} from "./Profile";
+import { Notification } from "./Notification";
+import { Profile } from "./Profile";
+import { Search } from "./Search";
+import { AddPost } from "./AddPost";
 
 
-export { Login, Register, Home, History, Profile }
+export { Login, Register, Home, Notification, Profile, Search, AddPost }
