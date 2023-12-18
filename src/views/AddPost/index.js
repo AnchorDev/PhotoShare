@@ -58,7 +58,7 @@ export function AddPost({ navigation }) {
         </View>
       )}
       <TouchableOpacity onPress={handleAddPhoto} style={styles.addButton}>
-        <Image source={require('./assets/dodaj.png')} style={styles.addIcon} resizeMode="contain" />
+        <Image source={require('../../img/dodaj.png')} style={styles.addIcon} resizeMode="contain" />
         <Text style={styles.addButtonText}>Dodaj post</Text>
       </TouchableOpacity>
     </ScrollView>
