@@ -12,12 +12,11 @@ export const styles = StyleSheet.create({
         position: 'absolute',
         top: 78,
         left: 20,
-        fontSize: 20,
         color: 'white',
         zIndex: 1,
     },
     textStyles: {
-        fontSize: 20,
+        fontSize: 25,
         color: 'white',
     },
     buttonsContainer: {
@@ -84,10 +83,11 @@ export const styles = StyleSheet.create({
     todayUsername: {
         color: 'white',
         fontWeight: 'bold',
+        fontStyle: 'italic',
         fontSize: 12,
     },
     todayAction: {
-        fontSize: 11,
+        fontSize: 10,
         color: 'white',
     },
     todayTimeAgo: {
