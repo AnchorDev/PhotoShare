@@ -8,4 +8,4 @@ import { AddPost } from "./AddPost";
 import { Settings } from "./Settings";
 import { Chat } from "./Chat";
 
-export { Login, Register, Home, Notification, Profile, Search, AddPost, Settings, Chat }
+export { Login, Register, Home, Notification, Profile, Search, AddPost, Chat, Settings }

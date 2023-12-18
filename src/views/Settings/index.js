@@ -1,66 +1,9 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, Text, Image, StyleSheet, Alert } from 'react-native';
+import { styles } from "./style";
 
-const styles = StyleSheet.create({
-  App: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: 'black',
-  },
-  settingsPanel: {
-    width: 300,
-    margin: 20,
-    padding: 10,
-    backgroundColor: 'black',
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    marginBottom: 20,
-    marginTop: 70,
-  },
-  headerText: {
-    color: 'white',
-    fontSize: 30,
-    fontFamily: 'Roboto',
-    marginLeft: 10,
-  },
-  settingsText: {
-    color: 'white',
-    fontSize: 30,
-    fontFamily: 'Roboto',
-  },
-  settingsTextRed: {
-    color: 'red',
-    fontSize: 40,
-  },
-  settingItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 10,
-    marginVertical: 5,
-  },
-  settingItemText: {
-    marginLeft: 10,
-    color: 'white',
-    fontSize: 40,
-    fontFamily: 'Roboto',
-  },
-  imageButton: {
-    marginTop: 5,
-    width: 30,
-    height: 30,
-    resizeMode: 'contain',
-  },
-  imageIcon: {
-    width: 35,
-    height: 35,
-    resizeMode: 'contain',
-  },
-});
+export function Settings({ navigation }) {
 
-const App = () => {
   const [lang, setLang] = useState('polski');
   const [notifications, setNotifications] = useState('true');
   const [privacy, setPrivacy] = useState('true');
@@ -118,22 +61,22 @@ const App = () => {
   );
 
   return (
-    <View style={styles.App}>
+    <View style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => console.log('Button pressed')}>
           <Image
-            source={require('./assets/left-arrow.png')}
+            source={require('../../img/left-arrow.png')}
             style={styles.imageButton}
           />
         </TouchableOpacity>
         <Text style={styles.headerText}>Ustawienia</Text>
       </View>
       <View style={styles.settingsPanel}>
-        {renderSettingItem('Język', require('./assets/language-icon.png'), handleLanguageClick)}
-        {renderSettingItem('Powiadomienia', require('./assets/notification-icon.png'), handleNotificationsClick)}
-        {renderSettingItem('Prywatność', require('./assets/privacy-icon.png'), handlePrivacyClick)}
-        {renderSettingItem('Użycie danych', require('./assets/data-usage-icon.png'), handleDataUsageClick)}
-        {renderSettingItem('Informacje', require('./assets/info-icon.png'), handleInfoClick)}
+        {renderSettingItem('Język', require('../../img/language-icon.png'), handleLanguageClick)}
+        {renderSettingItem('Powiadomienia', require('../../img/notification-icon.png'), handleNotificationsClick)}
+        {renderSettingItem('Prywatność', require('../../img/privacy-icon.png'), handlePrivacyClick)}
+        {renderSettingItem('Użycie danych', require('../../img/data-usage-icon.png'), handleDataUsageClick)}
+        {renderSettingItem('Informacje', require('../../img/info-icon.png'), handleInfoClick)}
         <TouchableOpacity style={styles.settingItem} onPress={handleLogoutClick}>
           <Text style={styles.settingsTextRed}>Wyloguj</Text>
         </TouchableOpacity>
@@ -144,5 +87,3 @@ const App = () => {
     </View>
   );
 };
-
-export default App;
