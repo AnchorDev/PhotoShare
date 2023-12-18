@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Image, StyleSheet, Text, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
+import {styles} from './style';
 
 export function AddPost({ navigation }) {
   const [image, setImage] = useState(null);
