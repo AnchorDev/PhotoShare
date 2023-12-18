@@ -102,4 +102,16 @@ export const styles = StyleSheet.create({
         flexDirection: 'column',
 
     },
+    userPhotosContainer: {
+        flexDirection: "column",
+    },
+    userPhotosRow: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+    },
+    userPhotos: {
+        width: 120,
+        height: 130,
+        margin: 1,
+    },
 });
