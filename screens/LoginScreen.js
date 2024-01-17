@@ -16,7 +16,6 @@ import CustomInput from "../components/customInputs/CustomInput";
 import CustomButton from "../components/customButtons/CustomButton";
 import CustomTextButton from "../components/customButtons/CustomTextButton";
 import { useAuth } from "../context/AuthContext";
-import { MessageModal } from "../components/modals/MessageModal";
 
 SplashScreen.preventAutoHideAsync();
 

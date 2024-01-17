@@ -19,9 +19,9 @@ import CustomButton from "../components/customButtons/CustomButton";
 import CustomTextButton from "../components/customButtons/CustomTextButton";
 import useMessageModal from "../hooks/useMessageModal";
 import MessageTypes from "../components/modals/types";
+import MessageModal from "../components/modals/MessageModal";
 
 import { auth } from "../firebase";
-import MessageModal from "../components/modals/MessageModal";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -52,12 +52,28 @@ const RegisterScreen = () => {
     }
 
     if (password !== confirmPassword) {
+      showMessageModal(
+        MessageTypes.FAIL,
+        "Uwaga!",
+        "Hasła się różnią.",
+        handleProceed
+      );
       return;
     } else {
       auth
         .createUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
           const user = userCredential.user;
+          showMessageModal(
+            MessageTypes.SUCCESS,
+            "Udało się!",
+            "Pomyślnie zarejestrowałeś konto.",
+            handleProceed
+          );
+          setEmail("");
+          setPassword("");
+          setConfirmPassword("");
+          setName("");
         })
         .catch((error) => {
           let errorMessage = "Coś poszło nie tak. Spróbuj ponownie.";

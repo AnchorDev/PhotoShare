@@ -103,7 +103,7 @@ const MessageModal = ({
                   >
                     {altButtonText || (
                       <>
-                        No
+                        Nie
                         <MaterialCommunityIcons name="close" size={16} />
                       </>
                     )}
@@ -118,7 +118,7 @@ const MessageModal = ({
                   >
                     {buttonText || (
                       <>
-                        Yes <MaterialCommunityIcons name="check" size={16} />
+                        Tak <MaterialCommunityIcons name="check" size={16} />
                       </>
                     )}
                   </StyledButton>

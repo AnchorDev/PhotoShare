@@ -15,7 +15,7 @@ const StyledText = ({ children, small, big, bold, style }) => {
         style,
       ]}
     >
-      {children}``
+      {children}
     </Text>
   );
 };
