@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation, CommonActions } from "@react-navigation/native";
+import * as SplashScreen from "expo-splash-screen";
 import { Pacifico_400Regular } from "@expo-google-fonts/pacifico";
 import * as Font from "expo-font";
 import { useAuth } from "../../context/AuthContext";
@@ -44,7 +45,7 @@ const CustomHeader = () => {
   }
 
   return (
-    <View style={styles.headerContainer}>
+    <View style={styles.headerContainer} onLayout={onLayoutRootView}>
       <TouchableOpacity onPress={handleLogout} style={styles.leftContainer}>
         <Ionicons name="log-out-outline" size={26} color="white" />
       </TouchableOpacity>
