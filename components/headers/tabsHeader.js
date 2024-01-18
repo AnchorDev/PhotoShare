@@ -1,19 +1,23 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useNavigation, CommonActions } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import * as SplashScreen from "expo-splash-screen";
 import { Pacifico_400Regular } from "@expo-google-fonts/pacifico";
 import * as Font from "expo-font";
 import { useAuth } from "../../context/AuthContext";
 
-const CustomHeader = () => {
+const TabsHeader = () => {
   const navigation = useNavigation();
   const [appIsReady, setAppIsReady] = useState(false);
   const { logout } = useAuth();
 
   const handleLogout = () => {
     logout();
+  };
+
+  const handleNotificationsButtonPress = () => {
+    navigation.navigate("NotificationsScreen");
   };
 
   const handleChatButtonPress = () => {
@@ -55,13 +59,24 @@ const CustomHeader = () => {
           style={{
             color: "white",
             fontFamily: "Pacifico_400Regular",
-            fontSize: 20,
+            fontSize: 26,
           }}
         >
           PhotoShare
         </Text>
       </View>
 
+      <TouchableOpacity
+        onPress={handleNotificationsButtonPress}
+        style={styles.rightContainer}
+      >
+        <Ionicons
+          name="heart-outline"
+          size={26}
+          color="white"
+          style={styles.iconMargin}
+        />
+      </TouchableOpacity>
       <TouchableOpacity
         onPress={handleChatButtonPress}
         style={styles.rightContainer}
@@ -75,27 +90,31 @@ const CustomHeader = () => {
 const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center",
     backgroundColor: "black",
-    padding: 20,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 10,
+    paddingBottom: 5,
     borderBottomWidth: 0.17,
     borderBottomColor: "rgba(169, 169, 169, 0.3)",
   },
   leftContainer: {
-    flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-start",
   },
   centerContainer: {
     flex: 1,
     alignItems: "center",
+    justifyContent: "center",
+    marginLeft: 35,
   },
   rightContainer: {
     alignItems: "flex-end",
   },
   iconMargin: {
-    marginLeft: 10,
+    marginRight: 20,
   },
 });
 
-export default CustomHeader;
+export default TabsHeader;

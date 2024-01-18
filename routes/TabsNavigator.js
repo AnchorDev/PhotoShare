@@ -7,7 +7,7 @@ import AddPostScreen from "../screens/AddPostScreen";
 import SearchScreen from "../screens/SearchScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import SettingsScreen from "../screens/SettingsScreen";
-import CustomHeader from "../components/other/customHeader";
+import TabsHeader from "../components/headers/tabsHeader";
 
 const Tab = createBottomTabNavigator();
 
@@ -47,7 +47,7 @@ const TabsNavigator = () => {
       <Tab.Screen
         name="HomeScreen"
         component={HomeScreen}
-        options={{ header: () => <CustomHeader />, headerShown: true }}
+        options={{ header: () => <TabsHeader />, headerShown: true }}
       />
       <Tab.Screen
         name="SearchScreen"
@@ -62,12 +62,12 @@ const TabsNavigator = () => {
       <Tab.Screen
         name="SettingsScreen"
         component={SettingsScreen}
-        options={{ header: () => <CustomHeader />, headerShown: true }}
+        options={{ header: () => <TabsHeader />, headerShown: true }}
       />
       <Tab.Screen
         name="ProfileScreen"
         component={ProfileScreen}
-        options={{ header: () => <CustomHeader />, headerShown: true }}
+        options={{ header: () => <TabsHeader />, headerShown: true }}
       />
     </Tab.Navigator>
   );
