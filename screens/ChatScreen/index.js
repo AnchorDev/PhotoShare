@@ -7,15 +7,15 @@ import { useNavigation } from "@react-navigation/native";
 function ChatScreen() {
     const navigation = useNavigation();
     const [items, setItems] = useState([
-        { id: 1, username: "WolfFromWallStreet", timeAgo: "1 godz.", isRead: true, message: "Agresja to w tej pracy mus...", image: require("../../assets/profile1.png")  },
+        { id: 1, username: "WolfFromWallStreet", timeAgo: "1 godz.", isRead: true, message: "Szukasz pracy?", image: require("../../assets/profile1.png")  },
         { id: 2, username: "JoiBladeRunner", timeAgo: "1 tydz.", isRead: true, message: "Wyglądasz na samotnego...", image: require("../../assets/profile2.png")},
-        { id: 3, username: "JacekWróbel", timeAgo: "2 tyg.", isRead: true, message: "Ty: Stary, od początku byłem... ", image: require("../../assets/profile3.png")},
-        { id: 4, username: "GetRichEasly2023", timeAgo: "mar.", isRead: true, message: "Wystarczy, że klikniesz w ten... ", image: require("../../assets/profile4.png")},
-        { id: 5, username: "FreeMoney21636712", timeAgo: "2019", isRead: true, message :"Досым, сен осыдан ақш...", image: require("../../assets/profile5.png")},
+        { id: 3, username: "JacekWróbel", timeAgo: "2 tyg.", isRead: true, message: "Szukam prawnika.", image: require("../../assets/profile3.png")},
+        { id: 4, username: "GetRichEasly2023", timeAgo: "mar.", isRead: true, message: "Wystarczy, że klikniesz w ten link i zarobisz milion złotych!!! ", image: require("../../assets/profile4.png")},
+        { id: 5, username: "FreeMoney21636712", timeAgo: "2019", isRead: true, message :"Досым, сен осыдан", image: require("../../assets/profile5.png")},
     ]);
     
-    const handleProfileClick = (profileId) => {
-        navigation.navigate("ChatDetail", { profileId });
+    const handleProfileClick = (profile) => {
+        navigation.navigate("ChatDetail", { profile });
       };
 
     return (
@@ -27,7 +27,7 @@ function ChatScreen() {
           </View>
         </View>
         {items.slice(0, 3).map((item) => (
-          <TouchableOpacity key={item.id} onPress={() => handleProfileClick(item.id)}>
+          <TouchableOpacity key={item.id} onPress={() => handleProfileClick(item)}>
             <View style={styles.profileItemContainer}>
               <View style={styles.profileBackground}>
                 <Image source={item.image} style={styles.profileImage} />
@@ -38,7 +38,7 @@ function ChatScreen() {
       </View>
       <View style={styles.chatSection}>
         {items.map((item) => (
-          <TouchableOpacity key={item.id} onPress={() => handleProfileClick(item.id)}>
+          <TouchableOpacity key={item.id} onPress={() => handleProfileClick(item)}>
             <View style={styles.chatItemContainer}>
               <View style={styles.chatBackground}>
                 <Image source={item.image} style={styles.chatImage} />
