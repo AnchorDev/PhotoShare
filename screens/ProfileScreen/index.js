@@ -9,7 +9,7 @@ function ProfileScreen() {
 
     const renderUserPhoto = ({ item }) => (
         <TouchableOpacity onPress={() => setSelectedImage(item.image)}>
-          <Image source={{ uri: item.image }} style={styles.userPhotos} />
+          <Image source={{ uri: item.image }} style={styles.userPhotos} resizeMode="cover" />
         </TouchableOpacity>
       );
 

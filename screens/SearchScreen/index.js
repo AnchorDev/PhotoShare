@@ -1,5 +1,3 @@
-// index.js
-
 import React, { useState, useEffect } from 'react';
 import { View, Image, TextInput, FlatList, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Text } from 'react-native';
 import { Asset } from 'expo-asset';

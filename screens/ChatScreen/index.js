@@ -1,4 +1,3 @@
-// index.js
 import React, { useState } from "react";
 import { Text, View, TouchableOpacity, Image } from "react-native";
 import { styles } from "./style";

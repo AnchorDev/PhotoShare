@@ -29,7 +29,7 @@ const ChatDetail = ({ route }) => {
           id: 0,
           sender: profile.username,
           content: profile.message,
-          audioUri: null, // Dodajmy pole audioUri do początkowej wiadomości
+          audioUri: null,
         };
         await AsyncStorage.mergeItem(`messages_${profile.id}`, JSON.stringify([initialMessage]));
 
@@ -106,7 +106,6 @@ const ChatDetail = ({ route }) => {
       const uri = recording.getURI();
       setAudioUri(uri);
 
-      // Dodajmy nową wiadomość z nagraniem do listy
       const newAudioMessage = { id: messages.length + 1, sender: "Me", audioUri: uri };
       const updatedMessages = [newAudioMessage, ...messages];
 

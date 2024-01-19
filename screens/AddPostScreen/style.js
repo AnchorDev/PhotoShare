@@ -35,17 +35,17 @@ export const styles = StyleSheet.create({
   },
   imageContainer: {
     alignItems: 'center',
-    marginTop: 20,
+    marginTop: 30,
     width: "100%",
   },
   image: {
-    width: 300,
-    height: 200,
-    borderRadius: 10,
-    marginBottom: 20,
+    width: 400,
+    height: 300,
+    borderRadius: 15,
+    marginBottom: 30,
   },
   input: {
-    height: 100,
+    height: 150,
     borderColor: 'white',
     borderWidth: 1,
     color: 'white',
