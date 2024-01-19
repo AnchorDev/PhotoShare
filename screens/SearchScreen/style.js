@@ -1,5 +1,11 @@
-import { StyleSheet } from "react-native";
+// style.js
 
+import { StyleSheet, Dimensions } from 'react-native';
+
+const { width, height } = Dimensions.get('window');
+const imageSize = width * 0.45; // Domyślny rozmiar zdjęcia przy małym wyświetlaniu (3 zdjęcia w rzędzie)
+const enlargedImageSize = width * 0.8; // Rozmiar zdjęcia po powiększeniu
+const enlargedImageTopMarginPercentage = 10; // Procentowy odstęp od góry do powiększonego zdjęcia
 
 export const styles = StyleSheet.create({
   container: {
@@ -12,15 +18,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 16,
   },
-  lupaIconContainer: {
-    width: 100,
-    height: 100,
-    marginLeft: 'auto',
-  },
-  lupaIcon: {
-    width: 200,
-    height: 200,
-  },
   input: {
     height: 40,
     borderColor: 'white',
@@ -32,28 +29,39 @@ export const styles = StyleSheet.create({
   imageContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 5,
+    marginRight: 5,
   },
   image: {
-    width: 300,
-    height: 200,
+    width: imageSize,
+    height: imageSize,
     resizeMode: 'cover',
   },
-  modalContainer: {
-    flex: 1,
-    backgroundColor: 'black',
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  modalImage: {
-    width: 450,
-    height: 210,
+  enlargedImage: {
+    width: enlargedImageSize,
+    height: enlargedImageSize,
     resizeMode: 'contain',
   },
-  imageName: {
-    marginTop: 8,
-    textAlign: 'center',
-    color: 'white',
-    fontSize: 18,
+  enlargedImageOverlay: {
+    position: 'absolute',
+    top: (height * enlargedImageTopMarginPercentage) / 30, // Ustawienie procentowego odstępu od góry
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    backgroundColor: 'rgba(255, 255, 255, 0.9)', // Biały pasek
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    width: enlargedImageSize,
+  },
+  enlargedImageUsername: {
+    color: 'black', // Zmieniono kolor tekstu na czarny
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginVertical: 5, // Dodałem odstęp od białego paska
   },
 });

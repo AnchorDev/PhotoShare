@@ -115,4 +115,23 @@ export const styles = StyleSheet.create({
         height: 130,
         margin: 1,
     },
+    modalContainer: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+      },
+      modalBackground: {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: "rgba(0, 0, 0, 0.7)",
+      },
+      modalImage: {
+        width: "80%",
+        height: "40%",
+        borderRadius: 10,
+        aspectRatio: 1,
+      },
 });

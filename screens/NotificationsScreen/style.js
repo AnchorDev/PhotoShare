@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
         marginBottom: 10,
     },
     activeEllipseButton: {
-        backgroundColor: 'blue',
+        backgroundColor: '#0186fc',
     },
     buttonText: {
         color: 'white',
@@ -66,7 +66,7 @@ export const styles = StyleSheet.create({
         width: 50,
         height: 50,
         borderRadius: 25,
-        backgroundColor: 'blue',
+        backgroundColor: '#0186fc',
         marginRight: 10,
         justifyContent: 'center',
         alignItems: 'center',
@@ -108,7 +108,7 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     todayActionButtonFollowed: {
-        backgroundColor: 'lightgray',
+        backgroundColor: '#333',
         borderColor: 'gray',
     },
     todayActionButtonTextFollowed: {
@@ -116,7 +116,7 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     todayActionButtonStart: {
-        backgroundColor: 'blue',
+        backgroundColor: '#0186fc',
         borderColor: 'white',
     },
     todayActionButtonTextStart: {

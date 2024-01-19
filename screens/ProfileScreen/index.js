@@ -10,18 +10,10 @@ function ProfileScreen() {
         <Image source={{ uri: item.image }} style={styles.userPhotos} />
       );
 
-    const photos = [
-        require("../../assets/prof1.jpg"),
-        require("../../assets/prof2.jpg"),
-        require("../../assets/prof3.jpg"),
-        require("../../assets/prof1.jpg"),
-        require("../../assets/prof2.jpg"),
-        require("../../assets/prof3.jpg"),
-        require("../../assets/prof1.jpg"),
-        require("../../assets/prof2.jpg"),
-        require("../../assets/prof3.jpg"),
-    ];
+      const reversedUserPosts = [...userPosts].reverse();
 
+      
+      
     return (
     <View style={styles.container}>
         <Text style={styles.profileText}>Maruch12</Text>
@@ -55,7 +47,7 @@ function ProfileScreen() {
                 zwłaszcza oponiarza.
             </Text>
             <FlatList
-                    data={userPosts}
+                    data={reversedUserPosts}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={renderUserPhoto}
                     horizontal={false}
