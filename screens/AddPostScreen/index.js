@@ -3,10 +3,12 @@ import { View, Image, StyleSheet, Text, TouchableOpacity, TextInput, ScrollView 
 import { Ionicons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import {styles} from './style';
+import { useAuth } from "../../context/AuthContext";
 
 function AddPostScreen() {
   const [image, setImage] = useState(null);
   const [text, setText] = useState('');
+  const { addPost } = useAuth();
 
   useEffect(() => {
     (async () => {
@@ -25,13 +27,19 @@ function AddPostScreen() {
       quality: 1,
     });
 
-    if (!result.cancelled) {
-      setImage(result.uri);
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
     }
   };
 
   const handleAddPhoto = () => {
+    if (!image) {
+      alert('Wybierz zdjęcie przed dodaniem posta!');
+      return;
+    }
+    addPost({ image, text });
     alert('Post dodany!');
+    setImage(null);
   };
 
   return (

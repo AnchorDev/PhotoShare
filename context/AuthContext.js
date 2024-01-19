@@ -8,6 +8,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userPosts, setUserPosts] = useState([]);
   const {
     messageModalState,
     hideMessageModal,
@@ -26,6 +27,10 @@ export const AuthProvider = ({ children }) => {
 
   const handleReject = () => {
     hideMessageModal();
+  };
+
+  const addPost = (post) => {
+    setUserPosts((prevPosts) => [...prevPosts, post]);
   };
 
   const login = (email, password) => {
@@ -76,7 +81,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, login, logout, userPosts, addPost  }}>
       {children}
       <MessageModal {...messageModalState} />
     </AuthContext.Provider>

@@ -1,8 +1,27 @@
 ﻿import React from "react";
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, Image, FlatList } from "react-native";
 import { styles } from "./style";
+import { useAuth } from "../../context/AuthContext";
 
 function ProfileScreen() {
+    const { userPosts } = useAuth();
+
+    const renderUserPhoto = ({ item }) => (
+        <Image source={{ uri: item.image }} style={styles.userPhotos} />
+      );
+
+    const photos = [
+        require("../../assets/prof1.jpg"),
+        require("../../assets/prof2.jpg"),
+        require("../../assets/prof3.jpg"),
+        require("../../assets/prof1.jpg"),
+        require("../../assets/prof2.jpg"),
+        require("../../assets/prof3.jpg"),
+        require("../../assets/prof1.jpg"),
+        require("../../assets/prof2.jpg"),
+        require("../../assets/prof3.jpg"),
+    ];
+
     return (
     <View style={styles.container}>
         <Text style={styles.profileText}>Maruch12</Text>
@@ -35,64 +54,13 @@ function ProfileScreen() {
                 Człowiek wielu talentów, lecz sekretem jest ich poznanie. F1 fan,
                 zwłaszcza oponiarza.
             </Text>
-            <View style={styles.userPhotosContainer}>
-                <View style={styles.userPhotosRow}>
-                    <Image
-                        source={require("../../assets/profilowe.jpg")}
-                        style={styles.userPhotos}
-                    />
-                    <Image
-                        source={require("../../assets/prof1.jpg")}
-                        style={styles.userPhotos}
-                    />
-                    <Image
-                        source={require("../../assets/prof2.jpg")}
-                        style={styles.userPhotos}
-                    />
-                </View>
-                <View style={styles.userPhotosRow}>
-                    <Image
-                        source={require("../../assets/prof3.jpg")}
-                        style={styles.userPhotos}
-                    />
-                    <Image
-                        source={require("../../assets/profilowe.jpg")}
-                        style={styles.userPhotos}
-                    />
-                    <Image
-                        source={require("../../assets/prof1.jpg")}
-                        style={styles.userPhotos}
-                    />
-                </View>
-                <View style={styles.userPhotosRow}>
-                    <Image
-                        source={require("../../assets/profilowe.jpg")}
-                        style={styles.userPhotos}
-                    />
-                    <Image
-                        source={require("../../assets/prof3.jpg")}
-                        style={styles.userPhotos}
-                    />
-                    <Image
-                        source={require("../../assets/prof2.jpg")}
-                        style={styles.userPhotos}
-                    />
-                </View>
-                <View style={styles.userPhotosRow}>
-                    <Image
-                        source={require("../../assets/profilowe.jpg")}
-                        style={styles.userPhotos}
-                    />
-                    <Image
-                        source={require("../../assets/prof1.jpg")}
-                        style={styles.userPhotos}
-                    />
-                    <Image
-                        source={require("../../assets/profilowe.jpg")}
-                        style={styles.userPhotos}
-                    />
-                </View>
-            </View>
+            <FlatList
+                    data={userPosts}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={renderUserPhoto}
+                    horizontal={false}
+                    numColumns={3}
+                />
         </View>
     </View>
     );

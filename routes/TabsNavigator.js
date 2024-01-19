@@ -15,13 +15,13 @@ const TabsNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarShowLabel: false, // Ustawienie opcji, aby ukryć etykiety
+        tabBarShowLabel: false,
         tabBarActiveTintColor: "white",
         tabBarInactiveTintColor: "white",
         tabBarStyle: [
           {
             position: "absolute",
-            backgroundColor: "transparent",
+            //backgroundColor: "transparent",
             padding: 10,
           },
           null,

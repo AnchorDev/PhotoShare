@@ -52,8 +52,8 @@ export const styles = StyleSheet.create({
   },
   addButton: {
     position: 'absolute',
-    bottom: 16,
-    right: 16,
+    bottom: 60,
+    right: 50,
     backgroundColor: 'black',
     padding: 10,
     borderRadius: 5,

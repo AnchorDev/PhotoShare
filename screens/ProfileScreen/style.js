@@ -5,13 +5,11 @@ export const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: 50,
         backgroundColor: '#101010',
     },
     profileText: {
         fontSize: 30,
         fontWeight: 'bold',
-        marginBottom: 20,
         color: 'white',
     },
     profileInfo: {
@@ -100,10 +98,13 @@ export const styles = StyleSheet.create({
     },
     userInfo: {
         flexDirection: 'column',
-
+        flex: 1,
     },
     userPhotosContainer: {
         flexDirection: "column",
+        flex: 1,
+        paddingBottom: 80,
+        marginTop: -50,
     },
     userPhotosRow: {
         flexDirection: "row",
