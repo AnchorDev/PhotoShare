@@ -7,11 +7,11 @@ import { useNavigation } from "@react-navigation/native";
 function ChatScreen() {
     const navigation = useNavigation();
     const [items, setItems] = useState([
-        { id: 1, username: "WolfFromWallStreet", timeAgo: "1 godz.", isRead: true, message: "Szukasz pracy?", image: require("../../assets/profile1.png")  },
-        { id: 2, username: "JoiBladeRunner", timeAgo: "1 tydz.", isRead: true, message: "Wyglądasz na samotnego...", image: require("../../assets/profile2.png")},
-        { id: 3, username: "JacekWróbel", timeAgo: "2 tyg.", isRead: true, message: "Szukam prawnika.", image: require("../../assets/profile3.png")},
-        { id: 4, username: "GetRichEasly2023", timeAgo: "mar.", isRead: true, message: "Wystarczy, że klikniesz w ten link i zarobisz milion złotych!!! ", image: require("../../assets/profile4.png")},
-        { id: 5, username: "FreeMoney21636712", timeAgo: "2019", isRead: true, message :"Досым, сен осыдан", image: require("../../assets/profile5.png")},
+        { id: 1, username: "WolfFromWallStreet", timeAgo: "1 godz.", message: "Szukasz pracy?", image: require("../../assets/profile1.png")  },
+        { id: 2, username: "JoiBladeRunner", timeAgo: "1 tydz.", message: "Wyglądasz na samotnego...", image: require("../../assets/profile2.png")},
+        { id: 3, username: "JacekWróbel", timeAgo: "2 tyg.", message: "Szukam prawnika.", image: require("../../assets/profile3.png")},
+        { id: 4, username: "GetRichEasly2023", timeAgo: "mar.", message: "Wystarczy, że klikniesz w ten link i zarobisz milion złotych!!! ", image: require("../../assets/profile4.png")},
+        { id: 5, username: "FreeMoney21636712", timeAgo: "2019", message :"Досым, сен осыдан", image: require("../../assets/profile5.png")},
     ]);
     
     const handleProfileClick = (profile) => {

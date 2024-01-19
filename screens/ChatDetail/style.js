@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
     receivedMessageContainer:
     {
         marginTop: 7,
-        backgroundColor: 'blue',
+        backgroundColor: '#0186fc',
         borderRadius: 10,
         marginRight: 100,
         marginLeft: 30,
@@ -62,13 +62,13 @@ export const styles = StyleSheet.create({
         fontSize: 12,
       },
       sendButton: {
-        //backgroundColor: 'blue',
+        //backgroundColor: '#0186fc',
         padding: 10,
         borderRadius: 10,
         marginTop:5,
       },
       input: {
-        width: 200,
+        width: '60%',
         backgroundColor: 'white',
         padding: 10,
         borderRadius: 10,
@@ -81,7 +81,6 @@ export const styles = StyleSheet.create({
         right: 0,
         alignItems: 'center',
         flexDirection: 'row',
-        flex: 1,
     
       },
       sendImageAudio:

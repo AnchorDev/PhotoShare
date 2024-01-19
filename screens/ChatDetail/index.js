@@ -3,6 +3,7 @@ import { View, Text, TextInput, FlatList, TouchableOpacity, Image } from "react-
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { styles } from "./style";
 import { Audio } from 'expo-av';
+import { Ionicons } from "@expo/vector-icons";
 
 const ChatDetail = ({ route }) => {
   const { profile } = route.params;
@@ -174,18 +175,14 @@ const ChatDetail = ({ route }) => {
           onChangeText={(text) => setNewMessage(text)}
         />
         <TouchableOpacity style={styles.sendButton} onPress={handleSend}>
-        <Image
-              source={require("../../assets/send_message.png")}
-              style={styles.sendImage}/>
+            <Ionicons name="send-sharp" size={30} color="white" style={styles.icon} />
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.sendButton}
           onPressIn={startRecording}
           onPressOut={stopRecording}
         >
-          <Image
-              source={require("../../assets/send_audio.png")}
-              style={styles.sendImageAudio}/>
+          <Ionicons name="megaphone-sharp" size={30} color="white" style={styles.icon} />
         </TouchableOpacity>
       </View>
     </View>

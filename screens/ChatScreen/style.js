@@ -2,16 +2,16 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     container: {
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#101010',
     },
     chatSection: {
         position: 'absolute',
-        top: 300,
+        top: 140,
         left: 10, 
         width: '100%',
-        backgroundColor: '#101010',
     },
     chatItemContainer: {
         flexDirection: 'row',
@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     },
     profilesSection: {
         position: 'absolute',
-        top: 150,
+        top: 40,
         left: 40, 
         width: '100%',
         border: '25px solid gray',
@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
         width: 65,
         height: 65,
         borderRadius: 50,
-        backgroundColor: 'blue',
+        backgroundColor: '#0186fc',
         marginRight: 10,
         justifyContent: 'center',
         alignItems: 'center',
@@ -50,7 +50,7 @@ export const styles = StyleSheet.create({
         width: 85,
         height: 85,
         borderRadius: 50,
-        backgroundColor: 'blue',
+        backgroundColor: '#0186fc',
         marginRight: 10,
         justifyContent: 'center',
         alignItems: 'center',
@@ -65,7 +65,7 @@ export const styles = StyleSheet.create({
         width: 50,
         height: 50,
         borderRadius: 25,
-        backgroundColor: 'blue',
+        backgroundColor: '#0186fc',
         marginRight: 10,
         justifyContent: 'center',
         alignItems: 'center',
