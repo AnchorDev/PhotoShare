@@ -1,10 +1,6 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-    inputContainer: {
-        backgroundColor: '#101010',
-        alignContent:'center',
-    },
     container: {
         marginBottom: 120,
     },
@@ -63,17 +59,16 @@ export const styles = StyleSheet.create({
       sendButtonText: {
         color: 'white',
         textAlign: 'center',
-        fontSize: 20,
+        fontSize: 12,
       },
       sendButton: {
-        width: 100,
-        backgroundColor: 'blue',
+        //backgroundColor: 'blue',
         padding: 10,
         borderRadius: 10,
         marginTop:5,
       },
       input: {
-        width: 300,
+        width: 200,
         backgroundColor: 'white',
         padding: 10,
         borderRadius: 10,
@@ -81,10 +76,26 @@ export const styles = StyleSheet.create({
       inputContainer:
       {
         position: 'absolute',
-        bottom: -120, // Ustawia inputContainer na dole
-        left: 0, // Ustawia inputContainer na środku (możesz dostosować to według potrzeb)
+        bottom: -60,
+        left: 25, 
         right: 0,
-        alignItems: 'center'
+        alignItems: 'center',
+        flexDirection: 'row',
+        flex: 1,
     
-      }
+      },
+      sendImageAudio:
+      {
+        width: 30,
+        height: 40,
+      },
+      sendImage:
+      {
+        width: 40,
+        height: 40,
+      },
+      audioMessageImage:
+      {
+        height: 40,
+      },
 });

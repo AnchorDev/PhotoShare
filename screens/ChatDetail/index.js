@@ -2,17 +2,17 @@ import React, { useState, useRef, useEffect } from "react";
 import { View, Text, TextInput, FlatList, TouchableOpacity, Image } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { styles } from "./style";
-import { AudioRecorderPlayer } from "react-native-audio-recorder-player";
+import { Audio } from 'expo-av';
 
 const ChatDetail = ({ route }) => {
   const { profile } = route.params;
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
-  const [audioPath, setAudioPath] = useState("");
-  const [isRecording, setIsRecording] = useState(false);
+  const [recording, setRecording] = useState();
+  const [sound, setSound] = useState();
+  const [audioUri, setAudioUri] = useState(null);
 
   const flatListRef = useRef(null);
-  const audioRecorderPlayer = new AudioRecorderPlayer();
 
   useEffect(() => {
     readMessagesFromStorage();
@@ -28,6 +28,7 @@ const ChatDetail = ({ route }) => {
           id: 0,
           sender: profile.username,
           content: profile.message,
+          audioUri: null, // Dodajmy pole audioUri do początkowej wiadomości
         };
         await AsyncStorage.mergeItem(`messages_${profile.id}`, JSON.stringify([initialMessage]));
 
@@ -35,9 +36,9 @@ const ChatDetail = ({ route }) => {
       } else {
         setMessages(JSON.parse(storedMessages));
       }
-  } catch (error) {
-    console.error("Error reading messages from AsyncStorage:", error);
-  }
+    } catch (error) {
+      console.error("Error reading messages from AsyncStorage:", error);
+    }
   };
 
   const writeMessagesToStorage = async (messages) => {
@@ -57,7 +58,7 @@ const ChatDetail = ({ route }) => {
     }
   };
 
-  const handleSend = async () => {
+  const handleSend = () => {
     if (newMessage.trim() === "") return;
 
     const newMessageObj = { id: messages.length + 1, sender: "Me", content: newMessage };
@@ -69,35 +70,74 @@ const ChatDetail = ({ route }) => {
     writeMessagesToStorage(updatedMessages);
 
     flatListRef.current.scrollToOffset({ offset: 0, animated: true });
-
-    if (isRecording) {
-      // Zakończ nagrywanie, zapisz ścieżkę dźwięku do wiadomości
-      const audioInfo = await audioRecorderPlayer.stopRecorder();
-      setAudioPath(audioInfo.path);
-
-      // Odtwórz dźwięk dla weryfikacji
-      audioRecorderPlayer.startPlayer(audioPath);
-      return;
+  };
+  const startRecording = async () => {
+    try {
+      const { recording } = await Audio.Recording.createAsync({
+        android: {
+          extension: '.wav',
+          outputFormat: Audio.RECORDING_OPTION_ANDROID_OUTPUT_FORMAT_DEFAULT,
+          audioEncoder: Audio.RECORDING_OPTION_ANDROID_AUDIO_ENCODER_DEFAULT,
+          sampleRate: 44100,
+          numberOfChannels: 2,
+          bitRate: 128000,
+        },
+        ios: {
+          extension: '.wav',
+          audioQuality: Audio.RECORDING_OPTION_IOS_AUDIO_QUALITY_MAX,
+          sampleRate: 44100,
+          numberOfChannels: 2,
+          bitRate: 128000,
+          linearPCMBitDepth: 16,
+          linearPCMIsBigEndian: false,
+          linearPCMIsFloat: false,
+        },
+      });
+      setRecording(recording);
+    } catch (error) {
+      console.error("Error starting recording:", error);
     }
   };
-  const handleRecord = async () => {
-    if (!isRecording) {
-      // Rozpocznij nagrywanie
-      const audioPath = await audioRecorderPlayer.startRecorder();
-      setAudioPath(audioPath);
-    } else {
-      // Zakończ nagrywanie
-      await audioRecorderPlayer.stopRecorder();
-    }
 
-    setIsRecording(!isRecording);
+  const stopRecording = async () => {
+    try {
+      await recording.stopAndUnloadAsync();
+      const uri = recording.getURI();
+      setAudioUri(uri);
+
+      // Dodajmy nową wiadomość z nagraniem do listy
+      const newAudioMessage = { id: messages.length + 1, sender: "Me", audioUri: uri };
+      const updatedMessages = [newAudioMessage, ...messages];
+
+      setMessages(updatedMessages);
+      writeMessagesToStorage(updatedMessages);
+
+    } catch (error) {
+      console.error("Error stopping recording:", error);
+    }
   };
 
-  const handlePlayAudio = async () => {
-    if (audioPath) {
-      await audioRecorderPlayer.startPlayer(audioPath);
+  const playRecording = async (uri) => {
+    try {
+      const { sound } = await Audio.Sound.createAsync(
+        { uri },
+        { shouldPlay: true }
+      );
+      setSound(sound);
+    } catch (error) {
+      console.error("Error playing recording:", error);
     }
   };
+
+  const stopPlaying = async () => {
+    try {
+      sound && await sound.unloadAsync();
+      setSound(null);
+    } catch (error) {
+      console.error("Error stopping playing:", error);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <FlatList
@@ -111,13 +151,16 @@ const ChatDetail = ({ route }) => {
               <Image source={profile.image} style={styles.messageProfileImage} />
             )}
             <View style={styles.messageContentContainer}>
-              <Text style={item.sender === "Me" ? styles.sentMessageText : styles.receivedMessageText}>
-                {item.content}
-              </Text>
-              {item.audioPath && (
-                <TouchableOpacity onPress={handlePlayAudio}>
-                  <Text style={styles.audioButtonText}>Odtwórz dźwięk</Text>
+              {item.audioUri ? (
+                <TouchableOpacity onPress={() => playRecording(item.audioUri)}>
+                  <Image
+                    source={require("../../assets/audio_message.png")}
+                    style={styles.audioMessageImage}/>
                 </TouchableOpacity>
+              ) : (
+                <Text style={item.sender === "Me" ? styles.sentMessageText : styles.receivedMessageText}>
+                  {item.content}
+                </Text>
               )}
             </View>
           </View>
@@ -130,11 +173,19 @@ const ChatDetail = ({ route }) => {
           value={newMessage}
           onChangeText={(text) => setNewMessage(text)}
         />
-        <TouchableOpacity style={styles.recordButton} onPress={handleRecord}>
-          <Text style={styles.recordButtonText}>{isRecording ? "Stop" : "Nagraj"}</Text>
-        </TouchableOpacity>
         <TouchableOpacity style={styles.sendButton} onPress={handleSend}>
-          <Text style={styles.sendButtonText}>Wyślij</Text>
+        <Image
+              source={require("../../assets/send_message.png")}
+              style={styles.sendImage}/>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.sendButton}
+          onPressIn={startRecording}
+          onPressOut={stopRecording}
+        >
+          <Image
+              source={require("../../assets/send_audio.png")}
+              style={styles.sendImageAudio}/>
         </TouchableOpacity>
       </View>
     </View>

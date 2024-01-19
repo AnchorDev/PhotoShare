@@ -52,7 +52,17 @@ export const MainContentNavigator = () => {
           },
         }}
       />
-      <Stack.Screen name="ChatDetail" component={ChatDetail} />
+      <Stack.Screen 
+      name="ChatDetail" 
+      component={ChatDetail} 
+      options={{
+        headerShown: true,
+        headerTitle: "",
+        headerStyle: {
+          backgroundColor: "black",
+        },
+      }}
+      />
     </Stack.Navigator>
   );
 };
