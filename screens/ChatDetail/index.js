@@ -16,10 +16,21 @@ const ChatDetail = ({ route }) => {
   const flatListRef = useRef(null);
 
   useEffect(() => {
+    GetPermissions();
     readMessagesFromStorage();
-
     //clearMessagesFromStorage();
   }, []);
+
+  const GetPermissions = async () => {
+    try {  
+      const AudioPerm = await Audio.requestPermissionsAsync();
+      if (AudioPerm.status === 'granted') {
+        console.log('Audio Permission Granted');
+      }
+    } catch (err) {
+      console.error('Failed to get permissions', err);
+    }
+  };
 
   const readMessagesFromStorage = async () => {
     try {
@@ -72,6 +83,7 @@ const ChatDetail = ({ route }) => {
 
     flatListRef.current.scrollToOffset({ offset: 0, animated: true });
   };
+
   const startRecording = async () => {
     try {
       const { recording } = await Audio.Recording.createAsync({
