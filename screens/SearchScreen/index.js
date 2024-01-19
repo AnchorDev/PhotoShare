@@ -13,11 +13,16 @@ function SearchScreen() {
 
   useEffect(() => {
     const localImages = [
-      { name: '@eliza', path: Asset.fromModule(require('../../assets/profile5.png')).uri },
-      { name: '@karol', path: Asset.fromModule(require('../../assets/profile5.png')).uri },
+      { name: '@eliza', path: Asset.fromModule(require('../../assets/profile2.jpg')).uri },
+      { name: '@karol', path: Asset.fromModule(require('../../assets/profile1.jpg')).uri },
       { name: '@kuba', path: Asset.fromModule(require('../../assets/profile5.png')).uri },
-      { name: '@radek', path: Asset.fromModule(require('../../assets/profile5.png')).uri },
-      { name: '@julia', path: Asset.fromModule(require('../../assets/profile5.png')).uri }
+      { name: '@radek', path: Asset.fromModule(require('../../assets/profile3.jpg')).uri },
+      { name: '@julia', path: Asset.fromModule(require('../../assets/profile6.jpg')).uri },
+      { name: '@oliwia', path: Asset.fromModule(require('../../assets/profile4.jpg')).uri },
+      { name: '@jakub', path: Asset.fromModule(require('../../assets/profile7.jpg')).uri },
+      { name: '@marek', path: Asset.fromModule(require('../../assets/profile8.jpg')).uri },
+      { name: '@robert', path: Asset.fromModule(require('../../assets/profile9.jpg')).uri },
+      { name: '@iga', path: Asset.fromModule(require('../../assets/profile10.jpg')).uri }
     ];
 
     setAllImages(localImages);
