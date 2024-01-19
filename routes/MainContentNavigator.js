@@ -1,6 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import ChatScreen from "../screens/ChatScreen";
-import NotificationsScreen from "../screens/notificationsScreen";
+import NotificationsScreen from "../screens/NotificationsScreen";
 import TabsNavigator from "./TabsNavigator";
 
 const Stack = createStackNavigator();
