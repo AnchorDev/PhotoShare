@@ -2,7 +2,6 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     container: {
-        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#101010',
@@ -12,6 +11,7 @@ export const styles = StyleSheet.create({
         top: 300,
         left: 10, 
         width: '100%',
+        backgroundColor: '#101010',
     },
     chatItemContainer: {
         flexDirection: 'row',
@@ -98,18 +98,4 @@ export const styles = StyleSheet.create({
         fontSize: 14,
         color: 'gray',
     },
-    header: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start',
-        marginBottom: 20,
-        marginTop: 70,
-      },
-      headerText: {
-        color: 'white',
-        fontSize: 30,
-        fontFamily: 'Roboto',
-        marginLeft: 10,
-      },
 });

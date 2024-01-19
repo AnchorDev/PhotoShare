@@ -2,6 +2,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import ChatScreen from "../screens/ChatScreen";
 import NotificationsScreen from "../screens/NotificationsScreen";
 import TabsNavigator from "./TabsNavigator";
+import ChatDetail from "../screens/ChatDetail";
 
 const Stack = createStackNavigator();
 
@@ -51,6 +52,7 @@ export const MainContentNavigator = () => {
           },
         }}
       />
+      <Stack.Screen name="ChatDetail" component={ChatDetail} />
     </Stack.Navigator>
   );
 };
