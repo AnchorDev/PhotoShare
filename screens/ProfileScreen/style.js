@@ -133,5 +133,6 @@ export const styles = StyleSheet.create({
         height: "40%",
         borderRadius: 10,
         aspectRatio: 1,
+        resizeMode: "contain",
       },
 });

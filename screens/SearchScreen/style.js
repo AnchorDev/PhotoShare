@@ -1,11 +1,9 @@
-// style.js
-
 import { StyleSheet, Dimensions } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
-const imageSize = width * 0.45; // Domyślny rozmiar zdjęcia przy małym wyświetlaniu (3 zdjęcia w rzędzie)
-const enlargedImageSize = width * 0.8; // Rozmiar zdjęcia po powiększeniu
-const enlargedImageTopMarginPercentage = 10; // Procentowy odstęp od góry do powiększonego zdjęcia
+const imageSize = width * 0.45;
+const enlargedImageSize = width * 0.8;
+const enlargedImageTopMarginPercentage = 10;
 
 export const styles = StyleSheet.create({
   container: {
