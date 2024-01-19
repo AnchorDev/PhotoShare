@@ -4,11 +4,13 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
     backgroundColor: 'black',
     paddingTop: 50,
     paddingLeft: 16,
+  },
+  contentContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   header: {
     flexDirection: 'row',
@@ -34,6 +36,7 @@ export const styles = StyleSheet.create({
   imageContainer: {
     alignItems: 'center',
     marginTop: 20,
+    width: "100%",
   },
   image: {
     width: 300,
@@ -42,7 +45,7 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
   },
   input: {
-    height: 150,
+    height: 100,
     borderColor: 'white',
     borderWidth: 1,
     color: 'white',
@@ -52,23 +55,26 @@ export const styles = StyleSheet.create({
   },
   addButton: {
     position: 'absolute',
-    bottom: 60,
-    right: 50,
+    bottom: 50,
+    right: 20,
     backgroundColor: 'black',
     padding: 10,
     borderRadius: 5,
-    overflow: 'hidden', 
-    flexDirection: 'row', 
-    alignItems: 'center', 
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 15,
+    paddingHorizontal: 20, 
+    borderRadius: 10, 
   },
   addIcon: {
-    width: 100,
-    height: 100,
+    width: 150,
+    height: 150,
     marginRight: 5,
     position: 'absolute',
   },
   addButtonText: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 18,
   },
 });

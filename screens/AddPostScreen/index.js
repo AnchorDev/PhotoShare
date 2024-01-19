@@ -45,9 +45,6 @@ function AddPostScreen() {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity style={styles.backButton} disabled={true}>
-          <Ionicons name="arrow-back" size={24} color="white" />
-        </TouchableOpacity>
         <Text style={styles.title}>Nowy Post</Text>
         <View style={styles.flexSpacer} />
         <TouchableOpacity onPress={pickImage} style={styles.cameraButton}>
