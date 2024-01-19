@@ -1,13 +1,16 @@
-﻿import React from "react";
-import { View, Text, Image, FlatList } from "react-native";
+﻿import React, { useState } from "react";
+import { View, Text, Image, FlatList, TouchableOpacity, Modal } from "react-native";
 import { styles } from "./style";
 import { useAuth } from "../../context/AuthContext";
 
 function ProfileScreen() {
     const { userPosts } = useAuth();
+    const [selectedImage, setSelectedImage] = useState(null);
 
     const renderUserPhoto = ({ item }) => (
-        <Image source={{ uri: item.image }} style={styles.userPhotos} />
+        <TouchableOpacity onPress={() => setSelectedImage(item.image)}>
+          <Image source={{ uri: item.image }} style={styles.userPhotos} />
+        </TouchableOpacity>
       );
 
       const reversedUserPosts = [...userPosts].reverse();
@@ -54,6 +57,23 @@ function ProfileScreen() {
                     numColumns={3}
                 />
         </View>
+        <Modal
+        visible={selectedImage !== null}
+        transparent={true}
+        animationType="slide"
+      >
+        <View style={styles.modalContainer}>
+          <TouchableOpacity
+            style={styles.modalBackground}
+            onPress={() => setSelectedImage(null)}
+          />
+          <Image
+            source={{ uri: selectedImage }}
+            style={styles.modalImage}
+            resizeMode="contain"
+          />
+        </View>
+      </Modal>
     </View>
     );
 }
