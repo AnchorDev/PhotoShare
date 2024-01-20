@@ -1,17 +1,39 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
+import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 
 import HomeScreen from "../screens/HomeScreen";
-import AddPostScreen from "../screens/AddPostScreen";
 import SearchScreen from "../screens/SearchScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import TabsHeader from "../components/headers/tabsHeader";
+import { useNavigation } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
 
 const TabsNavigator = () => {
+  const navigation = useNavigation();
+
+  const PrzyciskNawigacji = () => (
+    <TouchableOpacity
+      onPress={() => navigation.navigate("AddImageScreen")}
+      style={{
+        alignContent: "center",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+      activeOpacity={1}
+    >
+      <Ionicons
+        name="add-circle-outline"
+        size={25}
+        color="white"
+        style={{ paddingLeft: 23, paddingRight: 23 }}
+      />
+    </TouchableOpacity>
+  );
+
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -21,7 +43,7 @@ const TabsNavigator = () => {
         tabBarStyle: [
           {
             position: "absolute",
-            backgroundColor: "transparent",
+            backgroundColor: "black",
             padding: 10,
           },
           null,
@@ -33,8 +55,6 @@ const TabsNavigator = () => {
             iconName = focused ? "home" : "home-outline";
           } else if (route.name === "SearchScreen") {
             iconName = focused ? "search" : "search-outline";
-          } else if (route.name === "AddPostScreen") {
-            iconName = focused ? "add-circle" : "add-circle-outline";
           } else if (route.name === "SettingsScreen") {
             iconName = focused ? "settings" : "settings-outline";
           } else if (route.name === "ProfileScreen") {
@@ -47,18 +67,24 @@ const TabsNavigator = () => {
       <Tab.Screen
         name="HomeScreen"
         component={HomeScreen}
-        options={{ header: () => <TabsHeader />, headerShown: true }}
+        options={{
+          header: () => <TabsHeader />,
+          headerShown: true,
+        }}
       />
       <Tab.Screen
         name="SearchScreen"
         component={SearchScreen}
-        options={{ headerShown: false }}
+        options={{ header: () => <TabsHeader />, headerShown: true }}
       />
       <Tab.Screen
         name="AddPostScreen"
-        component={AddPostScreen}
-        options={{ headerShown: false }}
-      />
+        options={{
+          tabBarButton: () => <PrzyciskNawigacji />,
+        }}
+      >
+        {() => <component />}
+      </Tab.Screen>
       <Tab.Screen
         name="SettingsScreen"
         component={SettingsScreen}
