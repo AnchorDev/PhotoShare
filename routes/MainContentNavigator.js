@@ -1,6 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import ChatScreen from "../screens/ChatScreen";
-import NotificationsScreen from "../screens/notificationsScreen";
+import NotificationsScreen from "../screens/NotificationsScreen";
 import TabsNavigator from "./TabsNavigator";
 import AddImageScreen from "../screens/AddImageScreen";
 import { TouchableOpacity, Text } from "react-native";
@@ -9,6 +9,7 @@ import AddPostScreen from "../screens/AddPostScreen";
 import { GlobalProvider } from "../context/GlobalContext";
 import { useNavigation } from "@react-navigation/native";
 import CommentsScreen from "../screens/CommentsScreen";
+import ChatDetail from "../screens/ChatDetail";
 
 const Stack = createStackNavigator();
 
@@ -125,6 +126,36 @@ export const MainContentNavigator = () => {
         />
       </Stack.Navigator>
     </GlobalProvider>
+      <Stack.Screen
+        name="NotificationsScreen"
+        component={NotificationsScreen}
+        options={{
+          headerShown: true,
+          headerTitle: "Powiadomienia",
+          headerStyle: {
+            backgroundColor: "black",
+            borderBottomColor: "white",
+            borderBottomWidth: 0.17,
+            borderBottomColor: "rgba(169, 169, 169, 0.3)",
+          },
+          headerTintColor: "white",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
+      />
+      <Stack.Screen 
+      name="ChatDetail" 
+      component={ChatDetail} 
+      options={{
+        headerShown: true,
+        headerTitle: "",
+        headerStyle: {
+          backgroundColor: "black",
+        },
+      }}
+      />
+    </Stack.Navigator>
   );
 };
 
