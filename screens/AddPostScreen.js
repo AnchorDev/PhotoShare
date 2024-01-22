@@ -12,6 +12,9 @@ import { Ionicons } from "@expo/vector-icons";
 import StyledButton from "../components/customButtons/StyledButton";
 import StyledText from "../components/texts/StyledText";
 import appColors from "../config/theme";
+import "react-native-get-random-values";
+import { v4 as uuidv4 } from "uuid";
+import { WebView } from "react-native-webview";
 
 const AddPostScreen = () => {
   const [postText, setPostText] = useState("");
@@ -43,13 +46,25 @@ const AddPostScreen = () => {
       const parsedPosts = existingPosts ? JSON.parse(existingPosts) : [];
 
       const newPost = {
+        id: uuidv4(),
         mail: auth.currentUser?.email,
         image: image,
         text: postText,
+        likes: 0,
       };
+
       parsedPosts.push(newPost);
 
       await AsyncStorage.setItem("posts", JSON.stringify(parsedPosts));
+
+      const existingUserLikes = await AsyncStorage.getItem("userLikes");
+      const parsedUserLikes = existingUserLikes
+        ? JSON.parse(existingUserLikes)
+        : {};
+
+      parsedUserLikes[auth.currentUser?.email] = [];
+
+      await AsyncStorage.setItem("userLikes", JSON.stringify(parsedUserLikes));
 
       showMessageModal(
         MessageTypes.SUCCESS,

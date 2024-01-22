@@ -13,12 +13,14 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { auth } from "../firebase";
 
 const HomeScreen = () => {
   const isFocused = useIsFocused();
   const [posts, setPosts] = useState([]);
   const navigation = useNavigation();
   const [userLikes, setUserLikes] = useState({});
+  const [isUpdating, setIsUpdating] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,29 +43,59 @@ const HomeScreen = () => {
     };
 
     fetchData();
-  }, [isFocused]);
+
+    setUserLikes({});
+  }, [isFocused, isUpdating]);
 
   const handleLike = async (item) => {
     const postId = item.id;
-    const updatedUserLikes = { ...userLikes };
+    const userEmail = auth.currentUser?.email;
 
-    if (updatedUserLikes[postId]) {
-      delete updatedUserLikes[postId];
-      item.likes = (item.likes || 0) - 1;
-    } else {
-      updatedUserLikes[postId] = true;
-      item.likes = (item.likes || 0) + 1;
+    try {
+      setIsUpdating(true);
+
+      const storedUserLikes = await AsyncStorage.getItem("userLikes");
+      const parsedUserLikes = storedUserLikes
+        ? JSON.parse(storedUserLikes)
+        : {};
+
+      const userLikes = parsedUserLikes[userEmail] || [];
+
+      if (userLikes.includes(postId)) {
+        item.likes = (item.likes || 0) - 1;
+        parsedUserLikes[userEmail] = userLikes.filter(
+          (likeId) => likeId !== postId
+        );
+      } else {
+        item.likes = (item.likes || 0) + 1;
+        parsedUserLikes[userEmail] = [...userLikes, postId];
+      }
+
+      setPosts((prevPosts) =>
+        prevPosts.map((post) => {
+          if (post.id === postId) {
+            return { ...post, likes: item.likes };
+          }
+          return post;
+        })
+      );
+
+      await Promise.all([
+        AsyncStorage.setItem("userLikes", JSON.stringify(parsedUserLikes)),
+        AsyncStorage.setItem("posts", JSON.stringify(posts)),
+      ]);
+
+      setUserLikes(parsedUserLikes[userEmail] || {});
+      setIsUpdating(false);
+    } catch (error) {
+      console.error("Błąd podczas aktualizacji polubień:", error);
+      setIsUpdating(false);
     }
-
-    await AsyncStorage.setItem("userLikes", JSON.stringify(updatedUserLikes));
-    await AsyncStorage.setItem("posts", JSON.stringify(posts));
-
-    setUserLikes(updatedUserLikes);
-    setPosts([...posts]); // Trigger re-render
   };
 
   const isPostLiked = (postId) => {
-    return userLikes[postId] ? true : false;
+    const userEmail = auth.currentUser?.email;
+    return userLikes[userEmail]?.includes(postId) ? true : false;
   };
 
   return (
@@ -96,7 +128,7 @@ const HomeScreen = () => {
               <Ionicons
                 name={isPostLiked(item.id) ? "heart" : "heart-outline"}
                 size={28}
-                color={isPostLiked(item.id) ? "#FD1D1D" : "white"}
+                color={isPostLiked(item.id) ? "red" : "white"}
               />
             </TouchableOpacity>
             <TouchableOpacity
