@@ -124,26 +124,6 @@ export const MainContentNavigator = () => {
             },
           }}
         />
-      </Stack.Navigator>
-    </GlobalProvider>
-      <Stack.Screen
-        name="NotificationsScreen"
-        component={NotificationsScreen}
-        options={{
-          headerShown: true,
-          headerTitle: "Powiadomienia",
-          headerStyle: {
-            backgroundColor: "black",
-            borderBottomColor: "white",
-            borderBottomWidth: 0.17,
-            borderBottomColor: "rgba(169, 169, 169, 0.3)",
-          },
-          headerTintColor: "white",
-          headerTitleStyle: {
-            fontWeight: "bold",
-          },
-        }}
-      />
       <Stack.Screen 
       name="ChatDetail" 
       component={ChatDetail} 
@@ -156,6 +136,7 @@ export const MainContentNavigator = () => {
       }}
       />
     </Stack.Navigator>
+    </GlobalProvider>
   );
 };
 

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity, Text, StyleSheet, Alert } from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet, Alert, Button } from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
 import { styles } from "./style";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 function SettingsScreen() {
   const [lang, setLang] = useState('polski');
@@ -20,17 +22,20 @@ function SettingsScreen() {
   const handlePrivacyClick = () => {
     Alert.alert('Ustawienia prywatności');
   };
-
-  const handleDataUsageClick = () => {
-    Alert.alert('Użycie danych');
-  };
-
   const handleInfoClick = () => {
     Alert.alert('Aplikacja wykonana w 2023 roku na projekt z aplikacji mobilnych.');
   };
 
   const handleLogoutClick = () => {
     Alert.alert('Wylogowanie');
+  };
+  const handleDataUsageClick = async () => {
+    try {
+      await AsyncStorage.clear();
+      Alert.alert('Wyczyszczono AsyncStorage');
+    } catch (error) {
+      console.error("Error clearing AsyncStorage:", error);
+    }
   };
 
   const renderSettingItem = (text, iconName, onPress) => (
