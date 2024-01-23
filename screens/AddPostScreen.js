@@ -15,12 +15,14 @@ import appColors from "../config/theme";
 import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
 import { WebView } from "react-native-webview";
+import { useAuth } from "../context/AuthContext";
 
 const AddPostScreen = () => {
   const [postText, setPostText] = useState("");
   const { image } = useGlobal();
   const navigation = useNavigation();
   const { setImage } = useGlobal();
+  const { addPost } = useAuth(); 
 
   const { messageModalState, hideMessageModal, showMessageModal } =
     useMessageModal();
@@ -52,6 +54,7 @@ const AddPostScreen = () => {
         text: postText,
         likes: 0,
       };
+      
 
       parsedPosts.push(newPost);
 
@@ -65,6 +68,8 @@ const AddPostScreen = () => {
       parsedUserLikes[auth.currentUser?.email] = [];
 
       await AsyncStorage.setItem("userLikes", JSON.stringify(parsedUserLikes));
+
+      addPost(newPost);
 
       showMessageModal(
         MessageTypes.SUCCESS,
